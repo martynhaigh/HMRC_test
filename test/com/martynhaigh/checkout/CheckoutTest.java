@@ -259,6 +259,83 @@ public class CheckoutTest {
     }
 
     /**
+     * Check that we can apply a single apple offer
+     */
+    @Test
+    public void checkSingleAppleOffer() {
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.APPLE);
+        assertThat(checkout.getCartTotalCost(), is(equalTo(60)));
+    }
+
+    /**
+     * Check that we can apply a single apple offer with additional items
+     */
+    @Test
+    public void checkSingleAppleOfferWithAdditionalItems() {
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.ORANGE);
+
+        assertThat(checkout.getCartTotalCost(), is(equalTo(145)));
+    }
+
+    /**
+     * Check that we can apply a single orange offer
+     */
+    @Test
+    public void checkSingleOrangeOffer() {
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        assertThat(checkout.getCartTotalCost(), is(equalTo(50)));
+    }
+
+    /**
+     * Check that we can apply a single orange offer with additional items
+     */
+    @Test
+    public void checkSingleOrangeOfferWithAdditionalItems() {
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.APPLE);
+
+        assertThat(checkout.getCartTotalCost(), is(equalTo(135)));
+    }
+
+    /**
+     * Check that we can apply multiple apple offers
+     */
+    @Test
+    public void checkMultipleAppleOffer() {
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.APPLE);
+
+        addItemToCart(checkout, Product.APPLE);
+        addItemToCart(checkout, Product.APPLE);
+        assertThat(checkout.getCartTotalCost(), is(equalTo(120)));
+    }
+
+    /**
+     * Check that we can apply multiple orange offers
+     */
+    @Test
+    public void checkMultipleOrangeOffer() {
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        addItemToCart(checkout, Product.ORANGE);
+        assertThat(checkout.getCartTotalCost(), is(equalTo(100)));
+    }
+
+
+    /**
      * Convenience method to add a single item to the cart
      * @param product The items to add
      */

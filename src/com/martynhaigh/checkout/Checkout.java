@@ -75,12 +75,14 @@ public class Checkout {
     }
 
     /**
-     * Gets the cart total priceInPence
+     * Gets the cart total price
      *
-     * @return total priceInPence in pennies
+     * @return total price in pennies
      */
     int getCartTotalCost() {
-        return itemsInCart.stream().mapToInt(Product::getPriceInPence).sum();
+        int cartTotal = itemsInCart.stream().mapToInt(Product::getPriceInPence).sum();
+        int offerSavings = Offer.applyAllOffers(itemsInCart).getTotalSavings();
+        return cartTotal - offerSavings;
     }
 
     /**
